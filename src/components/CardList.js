@@ -1,23 +1,32 @@
-import React from 'react';
-import Card from './Card';
+import React from "react";
+import Card from "./Card";
 
-const CardList = ({ robots }) => {
+import { useSelector } from "react-redux";
+import { useGetRobotsQuery } from "../apiSlice";
+
+const CardList = () => {
+  const searchfield = useSelector((state) => state.search.searchField);
+  const { data } = useGetRobotsQuery();
+  const filteredRobots = data.filter((robot) => {
+    return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+  });
+
+  console.log("filteredRobots", filteredRobots);
+
   return (
     <div>
-      {
-        robots.map((user, i) => {
-          return (
-            <Card
-              key={i}
-              id={robots[i].id}
-              name={robots[i].name}
-              email={robots[i].email}
-              />
-          );
-        })
-      }
+      {filteredRobots.map((user, i) => {
+        return (
+          <Card
+            key={i}
+            id={filteredRobots[i].id}
+            name={filteredRobots[i].name}
+            email={filteredRobots[i].email}
+          />
+        );
+      })}
     </div>
   );
-}
+};
 
 export default CardList;
