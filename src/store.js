@@ -9,5 +9,5 @@ export const store = configureStore({
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(robotsApi.middleware),
+    getDefaultMiddleware().concat(robotsApi.middleware)
 });

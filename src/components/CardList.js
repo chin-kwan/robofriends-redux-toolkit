@@ -11,8 +11,6 @@ const CardList = () => {
     return robot.name.toLowerCase().includes(searchfield.toLowerCase());
   });
 
-  console.log("filteredRobots", filteredRobots);
-
   return (
     <div>
       {filteredRobots.map((user, i) => {
